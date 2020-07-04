@@ -1,0 +1,48 @@
+{
+    "name": "fabcar",
+    "version": "1.0.0",
+    "description": "FabCar contract implemented in JavaScript",
+    "main": "index.js",
+    "engines": {
+        "node": ">=8",
+        "npm": ">=5"
+    },
+    "scripts": {
+        "test": "mocha",
+        "start": "fabric-chaincode-node start"
+    },
+    "engineStrict": true,
+    "author": "Hyperledger",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "@theledger/fabric-mock-stub": "^5.0.0",
+        "ajv": "^5.5.2",
+        "fabric-contract-api": "^2.1.4",
+        "fabric-shim": "^2.0.0",
+        "rebuild": "^0.1.2"
+    },
+    "devDependencies": {
+        "chai": "^4.1.2",
+        "eslint": "^4.19.1",
+        "mocha": "^5.2.0",
+        "nyc": "^14.1.1",
+        "sinon": "^6.0.0",
+        "sinon-chai": "^3.2.0"
+    },
+    "nyc": {
+        "exclude": [
+            "coverage/**",
+            "test/**"
+        ],
+        "reporter": [
+            "text-summary",
+            "html"
+        ],
+        "all": true,
+        "check-coverage": true,
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+    }
+}

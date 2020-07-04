@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title> Truy Vấn Block </title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<style type="text/css">
+      header{
+        background-color: lightgray;
+        font-size:20px;
+        padding:15px;
+      }
+      header, .form-group{
+        margin-bottom: 3%;
+      }
+      .form-group{
+        width:50%;
+        margin-left: 20px;
+        margin-top: 10px;
+      }
+      #body{
+        margin-left:3%;
+        margin-right:3%;
+      }
+      .form-control{
+        margin: 8px;
+      }
+      #right_header{
+        width:20%;
+        font-size:15px;
+        margin-right:0px;
+      }
+      #left_header{
+        margin-left:0;
+        width:40%;
+        display:inline-block;
+      } 
+      #id {
+        width:49%;
+        display: inline-block;
+      }
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+          
+      }
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+      #container {
+        text-shadow: none;
+        background: #ffffff;
+        padding: 1em;
+      }
+      .renderjson a {
+          text-decoration: none;
+      }
+      .renderjson .disclosure {
+        color: crimson;
+        font-size: 150%;
+      }
+      .renderjson .string {
+        color: red;
+      }
+      .renderjson .number {
+        color: cyan;
+      }
+      .renderjson .boolean {
+        color: plum;
+      }
+      .renderjson .key {
+        color: #053c4e;
+      }
+      .render.json .keyword {
+        color: lightgoldenrodyellow;
+      }
+      .render.json .object.syntax {
+        color: lightseagreen;
+      }
+      .render.json .array.syntax {
+        color: lightsalmon;
+      }
+    </style>
+  <script>
+     function layBlock(){
+      // alert('Pressed');
+      var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+          if(this.readyState ==4 && this.status ==200){
+            var thongTin = JSON.parse(xhttp.responseText)
+            // console.log(thongTin)
+            document.getElementById('container').value =xhttp.responseText 
+            document.getElementById('container').innerHTML = ''
+            // document.getElementById('container').appendChild(
+	           //        renderjson(thongTin)
+	           //  )
+	         if(blockID == 1){
+	         	document.getElementById('container').appendChild(
+	                  renderjson(thongTin)
+	            )
+	         }
+            let time = thongTin.data.data[0].payload.header.channel_header.timestamp
+            let rwInfo = thongTin.data.data[0].payload.data.actions[0].payload.action.proposal_response_payload.extension.results.ns_rwset[1].rwset
+            let {reads, writes} = rwInfo
+            var label_time = document.createTextNode("Time tx")
+	        document.getElementById('container').appendChild(label_time)
+	        document.getElementById('container').appendChild(
+	                  renderjson(time)
+	        )
+	        var label_read = document.createTextNode("Read tx"); 
+	        document.getElementById('container').appendChild(label_read)
+	        document.getElementById('container').appendChild(
+	                  renderjson(rwInfo.reads)
+	        )    
+	        var label_write = document.createTextNode("Write tx");
+	        document.getElementById('container').appendChild(label_write)
+			document.getElementById('container').appendChild(
+	                  renderjson(rwInfo.writes)
+	        )		
+          }
+      };
+      var blockID = document.getElementById('blockID').value;
+      xhttp.open("GET","/truyVanBlock?blockID="+blockID,true);
+      xhttp.send();
+      return false;
+  }
+  </script>
+  <script src="https://cdn.rawgit.com/caldwell/renderjson/master/renderjson.js"></script>
+</head>
+
+<body>
+    <div class="form-group">
+    
+        <table class="table">
+            <tr>
+            
+                <td><label for="block">Block</label></td>
+                <td><input class="form-control" type="text" id="blockID" name="blockID" placeholder="" required></td>
+                
+            </tr>
+             <tr>
+                <td></td>
+                <td><button  name="query" class="btn btn-primary" onclick="layBlock()"> Chọn  </button></td>
+             </tr>
+        </table>
+    </div>
+    <div id="container">
+    </div>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,38 @@
+{
+       "CT001" : {
+                "ten" : "Lập trình căn bản",
+                "sotinchi" : 3
+       },
+       "CT002" : {
+                "ten" : "Toán rời rạc",
+                "sotinchi" :  2
+       },
+       "CT003" : {
+		          "ten" : "Lập trình hướng đối tượng",
+              "sotinchi" : 3
+       },
+       "CT004" : {
+		          "ten" : "Lập trình Web",
+              "sotinchi" : 3
+       },
+       "CT005" : {
+              "ten" : "Nguyên lí hệ điều hành",
+              "sotinchi" : 2
+       },
+       "CT006" : {
+              "ten" : "Lập trình android",
+              "sotinchi" : 3
+       },
+       "CT007" : {
+              "ten" : "Lập trình mạng",
+              "sotinchi" : 3
+       },
+       "CT008" : {
+              "ten" : "Lập trình Python",
+              "sotinchi" :3
+       },
+       "CT009" : {
+              "ten" : "Mạng máy tính",
+              "sotinchi" : 2
+       }
+}

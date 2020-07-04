@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title> Tra cứu </title>
+
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <base href="http://localhost:3000">
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+
+<style type="text/css">
+      header{
+        background-color: lightgray;
+        font-size:20px;
+        padding:15px;
+      }
+      header, .form-group{
+        margin-bottom: 3%;
+      }
+      .form-group{
+        max-width: 500px;
+        margin-left: 630px;
+        background: white;
+        padding: 10px;
+        margin-top:-280px;
+      }
+      .form-group1{
+        max-width: 500px;
+        margin-left: 30px;
+        margin-top:100px;
+      }
+      #body{
+        margin-left:3%;
+        margin-right:3%;
+        
+      }
+      .form-control{
+        margin: 8px;
+      }
+      #right_header{
+        width:20%;
+        font-size:15px;
+        margin-right:0px;
+      }
+      #left_header{
+        margin-left:0;
+        width:40%;
+        display:inline-block;
+      } 
+      #id {
+        width:49%;
+        display: inline-block;
+      }
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 200%;   
+      }
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+    </style>
+    <script>
+    function xetTotNghiep(){
+	    var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+        	if(this.readyState ==4 && this.status ==200){
+            var totnghiep = JSON.parse(xhttp.responseText)
+            console.log(totnghiep)
+            document.getElementById('vb-diemtotnghiep').value = totnghiep.diemTotNghiep
+            document.getElementById('vb-tongsochi').value = totnghiep.tongSoChi
+            document.getElementById('vb-tinhtrang').value = totnghiep.kq
+            document.getElementById('vb-xeploai').value = totnghiep.loai
+	      }
+	    };
+	    var mssv = document.getElementById('mssv').value;
+	    xhttp.open("GET","/xetTotNghiep?mssv="+mssv,true);
+	    xhttp.send();
+	    return false;
+	}
+	function truyVan(){
+		 	var xhttp1 = new XMLHttpRequest();
+	        xhttp1.onreadystatechange = function(){
+	        	if(this.readyState ==4 && this.status ==200){
+	        	var thongTin = JSON.parse(xhttp1.responseText)
+	       	 	document.getElementById('vb-mssv').value = document.getElementById('mssv').value;
+	       	 	document.getElementById('vb-ten').value = thongTin.ten;
+	       	 	document.getElementById('vb-cmnd').value = thongTin.cmnd;
+
+		      }
+		    };
+		    var mssv = document.getElementById('mssv').value;
+		    xhttp1.open("GET","/truyVan?mssv="+mssv,true);
+		    xhttp1.send();
+	}
+	function queryAll(){
+    xetTotNghiep()
+    truyVan()
+	}
+
+    </script>
+</head>
+
+<body>
+    <div class="form-group1">
+    
+        <table class="table">
+            <tr>
+            
+                <td><label for="mssv">Mã số Sinh Viên</label></td>
+                <td><input class="form-control" type="text" id="mssv" name="mssv" placeholder="B1609523" required></td>
+            </tr>
+            
+             <tr>
+                <td></td>
+                <td><button onclick="queryAll()" name="query" class="btn btn-primary"> Kết quả </button></td>
+             </tr>
+        </table>
+        <p style="color: blue; text-align: center;"> Sinh viên nhập vào MSSV của mình để tra cứu thông tin tốt nghiệp </p>
+    </div>
+
+    <div class="form-group">
+
+    	<table class="table">
+    		<h3 style="text-align: center; color: red; font-style: bold;"> 
+                  VĂN BẰNG CỦA SINH VIÊN </h3>
+    		 
+    		<tr>
+                <td><label for="vb-mssv"> MSSV</label></td>
+                <td><input class="form-control" type="text" id="vb-mssv" name="mssv" placeholder=""></td>
+            </tr>
+            <tr>
+                <td><label for="vb-ten"> Họ và tên </label></td>
+                <td><input class="form-control" type="text" id="vb-ten" name="ten" placeholder=""></td>
+            </tr>
+             <tr>
+                <td><label for="vb-cmnd"> CMND </label></td>
+                <td><input class="form-control" type="text" id="vb-cmnd" name="cmnd" placeholder=""></td>
+            </tr>
+    		     <tr>
+                <td><label for="vb-diemtotnghiep"> Điểm trung bình tích lũy </label></td>
+                <td><input class="form-control" type="text" id="vb-diemtotnghiep" name="diemtotnghiep" placeholder=""></td>
+            </tr>
+            <tr>
+                <td><label for="vb-tongsochi"> Số chỉ </label></td>
+                <td><input class="form-control" type="text" id="vb-tongsochi" name="tongsochi" placeholder=""></td>
+            </tr>
+            <tr>
+                <td><label for="vb-xeploai">Xếp loại </label></td>
+                <td><input class="form-control" type="text" id="vb-xeploai" name="xeploai" placeholder=""></td>
+            </tr>
+            <tr>
+                <td><label for="vb-tinhtrang">Tình trạng tốt nghiệp </label></td>
+                <td><input class="form-control" type="text" id="vb-tinhtrang" name="tinhtrang" placeholder=""></td>
+            </tr>          
+    	</table>
+    </div>
+</body>
+
+</html>
+
+

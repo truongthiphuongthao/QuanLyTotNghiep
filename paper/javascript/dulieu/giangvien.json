@@ -1,0 +1,29 @@
+{
+	"CT001" : {
+		"magv" : "TVChau"
+	},
+	"CT002" : {
+		"magv" : "PHCuong"
+	},
+	"CT003" : {
+		"magv" : "TCDe"
+	},
+	"CT004" : {
+		"magv" : "PTCang"
+	},
+	"CT005" : {
+		"magv" : "NCHuy"
+	},
+	"CT006" : {
+		"magv" : "NCHNgoc"
+	},
+	"CT007" : {
+		"magv" : "LQThang"
+	},
+	"CT008" : {
+		"magv" : "LDThang"
+	},
+	"CT009" : {
+		"magv" : "TCAn"
+	}
+}
