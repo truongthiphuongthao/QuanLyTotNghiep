@@ -16,7 +16,7 @@
     "license": "Apache-2.0",
     "dependencies": {
         "@theledger/fabric-mock-stub": "^5.0.0",
-        "ajv": "^5.5.2",
+        "ajv": "^6.12.3",
         "fabric-contract-api": "^2.1.4",
         "fabric-shim": "^2.0.0",
         "rebuild": "^0.1.2"
