@@ -19,7 +19,7 @@
         "fabric-ca-client": "^2.1.1",
         "fabric-network": "^2.0.0-beta.4",
         "marshal": "^0.5.2",
-        "protobufjs": "^6.9.0"
+        "protobufjs": "^6.11.3"
     },
     "devDependencies": {
         "chai": "^4.2.0",
